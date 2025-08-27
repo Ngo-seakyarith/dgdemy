@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "DGDemy - Professional Training & AI Learning",
   description: "Comprehensive learning platform offering professional training, AI courses, webinars, and workshops",
+  icons: {
+    icon: "/app-logo.png",
+  },
 };
 
 export default function RootLayout({

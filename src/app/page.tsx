@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import TrainerCard from '../components/TrainerCard';
 import trainersData from '../../DB/trainer and speaker data/editdata.json';
 
@@ -46,7 +47,7 @@ export default function Home() {
     {
       title: 'Gallery',
       description: 'Showcase of projects and achievements',
-      href: '/dashboard/gallery',
+      href: '/gallery',
       icon: '🖼️'
     },
     {
@@ -78,7 +79,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
-      <div className="w-64 bg-white shadow-lg">
+      <div className="w-64 bg-white shadow-lg fixed h-full overflow-y-auto">
         <div className="p-6">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Dashboard</h2>
           <nav className="space-y-2">
@@ -86,7 +87,9 @@ export default function Home() {
               <Link
                 key={index}
                 href={item.href}
-                className="flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200 group"
+                className={`flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200 group ${
+                  item.href === '/' ? 'bg-blue-50 text-blue-600' : ''
+                }`}
               >
                 <span className="text-2xl">{item.icon}</span>
                 <div>
@@ -104,10 +107,19 @@ export default function Home() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 ml-64 overflow-y-auto pt-16">
         {/* Hero Section */}
         <section className="min-h-screen bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center text-white">
           <div className="text-center px-4">
+            <div className="mb-8">
+              <Image
+                src="/app-logo.png"
+                alt="DGDemy Logo"
+                width={120}
+                height={120}
+                className="mx-auto rounded-lg"
+              />
+            </div>
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               Welcome to <span className="text-yellow-300">DGDemy</span>
             </h1>
