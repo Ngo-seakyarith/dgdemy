@@ -237,14 +237,19 @@ export default function AINews() {
               )}
 
               <div className="prose prose-gray max-w-none">
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  {selectedNews.excerpt}
-                </p>
-
-                {selectedNews.content && selectedNews.content !== selectedNews.excerpt && (
-                  <p className="text-gray-600 leading-relaxed">
-                    {selectedNews.content}
+                {/* Show excerpt if available */}
+                {selectedNews.excerpt && (
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    {selectedNews.excerpt}
                   </p>
+                )}
+
+                {/* Show full content if different from excerpt */}
+                {selectedNews.content && selectedNews.content !== selectedNews.excerpt && (
+                  <div
+                    className="text-gray-600 leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: selectedNews.content }}
+                  />
                 )}
               </div>
 
