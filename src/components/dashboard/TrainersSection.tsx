@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import TrainerCard from './TrainerCard';
+import { TrainerCard } from '../shared';
 
 interface Trainer {
   name: string;

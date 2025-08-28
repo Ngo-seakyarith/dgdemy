@@ -1,13 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useMemo } from 'react';
-import PageTransition from '../../../components/PageTransition';
-import NewsHeader from '../../../components/NewsHeader';
-import NewsGrid from '../../../components/NewsGrid';
-import NewsModal from '../../../components/NewsModal';
-import LoadingSpinner from '../../../components/LoadingSpinner';
-import EmptyState from '../../../components/EmptyState';
-import CategoryFilter from '../../../components/CategoryFilter';
+import { PageTransition, NewsHeader, NewsGrid, NewsModal, LoadingSpinner, EmptyState, CategoryFilter } from '../../../components';
 import { NewsItem } from '../../../lib/types';
 
 export default function AINewsPage() {

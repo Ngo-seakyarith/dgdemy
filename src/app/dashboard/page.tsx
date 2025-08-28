@@ -1,11 +1,7 @@
 'use client';
 
 import React from 'react';
-import PageTransition from '../../components/PageTransition';
-import HeroSection from '../../components/HeroSection';
-import AboutSection from '../../components/AboutSection';
-import TrainersSection from '../../components/TrainersSection';
-import CallToAction from '../../components/CallToAction';
+import { PageTransition, HeroSection, AboutSection, TrainersSection, CallToAction } from '../../components';
 import trainersData from '../../../DB/trainer and speaker data/editdata.json';
 
 export default function DashboardHome() {
