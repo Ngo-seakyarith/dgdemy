@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { NewsItem } from '../lib/types';
-import { getCategoryById } from '../lib/categories';
+import { NewsItem } from '../../lib/types';
+import { getCategoryById } from '../../lib/categories';
 
 interface NewsCardProps {
   item: NewsItem;

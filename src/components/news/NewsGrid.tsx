@@ -2,7 +2,7 @@
 
 import React from 'react';
 import NewsCard from './NewsCard';
-import { NewsItem } from '../lib/types';
+import { NewsItem } from '../../lib/types';
 
 interface NewsGridProps {
   news: NewsItem[];

@@ -42,9 +42,9 @@ const dashboardItems = [
     icon: '🤖'
   },
   {
-    title: 'Course Catalog',
-    description: 'Complete list of available courses',
-    href: '/dashboard/catalog',
+    title: 'Course Documents',
+    description: 'Training materials and course documents',
+    href: '/dashboard/course-catalog',
     icon: '📚'
   }
 ];

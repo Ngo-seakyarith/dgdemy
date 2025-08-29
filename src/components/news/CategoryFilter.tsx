@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { NEWS_CATEGORIES } from '../lib/categories';
+import { NEWS_CATEGORIES } from '../../lib/categories';
 
 interface CategoryFilterProps {
   selectedCategory: string | null;

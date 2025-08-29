@@ -2,8 +2,8 @@
 
 import React, { useEffect } from 'react';
 import Image from 'next/image';
-import { NewsItem } from '../lib/types';
-import { getCategoryById } from '../lib/categories';
+import { NewsItem } from '../../lib/types';
+import { getCategoryById } from '../../lib/categories';
 
 interface NewsModalProps {
   newsItem: NewsItem | null;
