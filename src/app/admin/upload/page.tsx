@@ -8,7 +8,7 @@ export default function AdminUploadPage() {
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState('');
 
-  const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'admin123';
+  const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
 
   const handleAuth = () => {
     if (password === ADMIN_PASSWORD) {
@@ -128,7 +128,7 @@ export default function AdminUploadPage() {
 
         <div className="mt-8 text-center">
           <a
-            href="/documents"
+            href="/dashboard/course-catalog"
             className="text-blue-600 hover:text-blue-800 underline"
           >
             View All Documents →

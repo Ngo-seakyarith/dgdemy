@@ -4,7 +4,7 @@ import sql from '../../../lib/neon';
 export async function GET(request: NextRequest) {
   try {
     const documents = await sql`
-      SELECT id, filename, uploaded_at
+      SELECT id, filename, html_content, uploaded_at
       FROM word_documents
       ORDER BY uploaded_at DESC
     `;
