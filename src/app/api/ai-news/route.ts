@@ -8,21 +8,13 @@ export async function GET(request: NextRequest) {
     const category = searchParams.get('category');
     const limit = parseInt(searchParams.get('limit') || '10');
 
-    console.log('🔍 AI News API Debug:');
-    console.log('- Category filter:', category);
-    console.log('- Limit:', limit);
-
     // Fetch posts from Firestore
     let query;
 
     if (category && category !== 'all') {
-      console.log('- Applying category filter:', category);
-      console.log('- Category type:', typeof category);
-      console.log('- Category length:', category.length);
-
       // Add additional validation
       if (category.trim() === '') {
-        console.log('- WARNING: Category is empty string after trim');
+        // Category is empty string after trim
       }
 
       // When filtering by category, we can't use orderBy with where clause due to Firestore index requirements
@@ -30,16 +22,11 @@ export async function GET(request: NextRequest) {
       query = db.collection('posts').where('category', '==', category);
       console.log('- Query created with category filter (no orderBy to avoid composite index requirement)');
     } else {
-      console.log('- No category filter applied (all or empty)');
       // Only use orderBy when not filtering to avoid composite index issues
       query = db.collection('posts').orderBy('createdAt', 'desc');
     }
 
     const snapshot = await query.limit(limit).get();
-
-    console.log('- Query result:');
-    console.log('  - Total documents found:', snapshot.size);
-    console.log('  - Empty result:', snapshot.empty);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const posts: any[] = [];

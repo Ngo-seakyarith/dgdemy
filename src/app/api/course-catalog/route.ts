@@ -3,11 +3,27 @@ import sql from '../../../lib/neon';
 
 export async function GET(request: NextRequest) {
   try {
-    const documents = await sql`
-      SELECT id, filename, html_content, uploaded_at
-      FROM word_documents
-      ORDER BY uploaded_at DESC
-    `;
+    const { searchParams } = new URL(request.url);
+    const category = searchParams.get('category');
+
+    let query;
+
+    if (category && (category === 'ai_skill' || category === 'soft_skill')) {
+      query = sql`
+        SELECT id, filename, html_content, category, uploaded_at
+        FROM word_documents
+        WHERE category = ${category}
+        ORDER BY uploaded_at DESC
+      `;
+    } else {
+      query = sql`
+        SELECT id, filename, html_content, category, uploaded_at
+        FROM word_documents
+        ORDER BY uploaded_at DESC
+      `;
+    }
+
+    const documents = await query;
 
     return NextResponse.json({ documents });
   } catch (error) {

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function AdminUploadPage() {
   const [password, setPassword] = useState('');
@@ -111,6 +112,24 @@ export default function AdminUploadPage() {
             </p>
           </div>
 
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Course Category
+            </label>
+            <select
+              name="category"
+              required
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">Select a category</option>
+              <option value="ai_skill">AI Skill</option>
+              <option value="soft_skill">Soft Skill</option>
+            </select>
+            <p className="text-sm text-gray-500 mt-1">
+              Choose the category for this course document.
+            </p>
+          </div>
+
           <button
             type="submit"
             disabled={uploading}
@@ -127,12 +146,12 @@ export default function AdminUploadPage() {
         )}
 
         <div className="mt-8 text-center">
-          <a
+          <Link
             href="/dashboard/course-catalog"
             className="text-blue-600 hover:text-blue-800 underline"
           >
             View All Documents →
-          </a>
+          </Link>
         </div>
       </div>
     </div>

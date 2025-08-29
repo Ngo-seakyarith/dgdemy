@@ -1,28 +1,22 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-
-interface Document {
-  id: number;
-  filename: string;
-  html_content: string;
-  uploaded_at: string;
-}
+import { useEffect, useState, useCallback } from 'react';
+import CourseCard from '../../../components/CourseCard';
+import { Document } from '../../../lib/types';
 
 export default function CourseCatalogPage() {
   const [documents, setDocuments] = useState<Document[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<'all' | 'ai_skill' | 'soft_skill'>('all');
 
-  useEffect(() => {
-    fetchDocuments();
-  }, []);
-
-  const fetchDocuments = async () => {
+  const fetchDocuments = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/course-catalog');
+      const url = selectedCategory === 'all'
+        ? '/api/course-catalog'
+        : `/api/course-catalog?category=${selectedCategory}`;
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error('Failed to fetch documents');
       }
@@ -33,7 +27,11 @@ export default function CourseCatalogPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    fetchDocuments();
+  }, [fetchDocuments]);
 
   if (loading) {
     return (
@@ -73,67 +71,45 @@ export default function CourseCatalogPage() {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Course Catalog</h1>
-          <p className="mt-2 text-gray-600">
-            Browse and view uploaded Word documents with extracted content
-          </p>
+          {/* Category Filter */}
+          <div className="mt-4 flex gap-2">
+            <button
+              onClick={() => setSelectedCategory('all')}
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                selectedCategory === 'all'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+            >
+              All Courses
+            </button>
+            <button
+              onClick={() => setSelectedCategory('ai_skill')}
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                selectedCategory === 'ai_skill'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+            >
+              AI Skills
+            </button>
+            <button
+              onClick={() => setSelectedCategory('soft_skill')}
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                selectedCategory === 'soft_skill'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+            >
+              Soft Skills
+            </button>
+          </div>
         </div>
 
-        {documents.length === 0 ? (
-          <div className="text-center py-12">
-            <div className="bg-white rounded-lg shadow p-8">
-              <div className="text-gray-400 mb-4">
-                <svg className="mx-auto h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No documents found</h3>
-              <p className="text-gray-500 mb-4">
-                Upload your first Word document to get started
-              </p>
-              <Link
-                href="/admin/upload"
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-              >
-                Upload Document
-              </Link>
-            </div>
-          </div>
-        ) : (
+        {documents.length > 0 && (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {documents.map((document) => (
-              <div key={document.id} className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow">
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1 truncate">
-                        {document.filename.replace('.docx', '').replace('.doc', '')}
-                      </h3>
-                      <p className="text-sm text-gray-500">
-                        {new Date(document.uploaded_at).toLocaleDateString()}
-                      </p>
-                    </div>
-                    <div className="ml-4">
-                      <svg className="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
-                    </div>
-                  </div>
-
-                  <div className="mb-4">
-                    <p className="text-sm text-gray-600 line-clamp-3">
-                      {document.html_content.replace(/<[^>]*>/g, '').substring(0, 150)}...
-                    </p>
-                  </div>
-
-                  <Link
-                    href={`/dashboard/course-catalog/${document.id}`}
-                    className="w-full bg-blue-600 text-white px-4 py-2 rounded text-center hover:bg-blue-700 transition-colors"
-                  >
-                    View Document
-                  </Link>
-                </div>
-              </div>
+              <CourseCard key={document.id} document={document} />
             ))}
           </div>
         )}

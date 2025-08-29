@@ -1,0 +1,17 @@
+{
+  "id": "workshop-001",
+  "title": "Introduction to AI Workshop",
+  "description": "A comprehensive introduction to artificial intelligence concepts and applications",
+  "date": "2024-01-15",
+  "duration": "2 hours",
+  "videos": [
+    {
+      "title": "Part 1: AI Fundamentals",
+      "youtubeUrl": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE",
+      "thumbnailUrl": "https://img.youtube.com/vi/YOUR_VIDEO_ID_HERE/maxresdefault.jpg",
+      "duration": "45 minutes"
+    }
+  ],
+  "tags": ["AI", "Machine Learning", "Beginner"],
+  "instructor": "John Doe"
+}

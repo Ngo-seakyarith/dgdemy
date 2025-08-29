@@ -7,6 +7,7 @@ interface Document {
   id: number;
   filename: string;
   html_content: string;
+  category: 'ai_skill' | 'soft_skill';
   uploaded_at: string;
 }
 

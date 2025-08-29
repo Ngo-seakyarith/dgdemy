@@ -6,9 +6,15 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const file = formData.get('file') as File;
+    const category = formData.get('category') as string;
 
     if (!file) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 });
+    }
+
+    // Validate category
+    if (!category || (category !== 'ai_skill' && category !== 'soft_skill')) {
+      return NextResponse.json({ error: 'Invalid category. Must be ai_skill or soft_skill' }, { status: 400 });
     }
 
     // Check if it's a Word document
@@ -19,12 +25,6 @@ export async function POST(request: NextRequest) {
     // Convert file to buffer
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
-
-    console.log('File info:', {
-      name: file.name,
-      size: file.size,
-      type: file.type
-    });
 
     if (buffer.length === 0) {
       return NextResponse.json({ error: 'File is empty or corrupted' }, { status: 400 });
@@ -38,21 +38,19 @@ export async function POST(request: NextRequest) {
       extractedContent = result.value;
 
       if (result.messages && result.messages.length > 0) {
-        console.log('Mammoth conversion messages:', result.messages);
+        // Mammoth conversion messages available
       }
 
-      console.log('✅ Document content extracted successfully with Mammoth');
+      // Document content extracted successfully with Mammoth
     } catch (mammothError) {
       console.error('Mammoth conversion failed:', mammothError);
       extractedContent = '<p>Unable to extract document content. The file may be corrupted or in an unsupported format.</p>';
     }
 
-    console.log('Document processed successfully');
-
     // Save to database
     const result_db = await sql`
-      INSERT INTO word_documents (filename, html_content)
-      VALUES (${file.name}, ${extractedContent})
+      INSERT INTO word_documents (filename, html_content, category)
+      VALUES (${file.name}, ${extractedContent}, ${category})
       RETURNING id
     `;
 

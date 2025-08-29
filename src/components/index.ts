@@ -11,3 +11,6 @@ export * from './dashboard';
 
 // Shared Components
 export * from './shared';
+
+// Course Components
+export { default as CourseCard } from './CourseCard';

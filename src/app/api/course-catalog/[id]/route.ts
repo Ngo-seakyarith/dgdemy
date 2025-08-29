@@ -7,7 +7,7 @@ export async function GET(
 ) {
   try {
     const documents = await sql`
-      SELECT id, filename, html_content, uploaded_at
+      SELECT id, filename, html_content, category, uploaded_at
       FROM word_documents
       WHERE id = ${params.id}
     `;
