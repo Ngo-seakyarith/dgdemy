@@ -14,3 +14,6 @@ export * from './shared';
 
 // Course Components
 export { default as CourseCard } from './CourseCard';
+
+// Workshop Components
+export { default as WorkshopCard } from './WorkshopCard';

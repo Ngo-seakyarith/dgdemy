@@ -1,17 +1,34 @@
-{
-  "id": "workshop-001",
-  "title": "Introduction to AI Workshop",
-  "description": "A comprehensive introduction to artificial intelligence concepts and applications",
-  "date": "2024-01-15",
-  "duration": "2 hours",
-  "videos": [
-    {
-      "title": "Part 1: AI Fundamentals",
-      "youtubeUrl": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE",
-      "thumbnailUrl": "https://img.youtube.com/vi/YOUR_VIDEO_ID_HERE/maxresdefault.jpg",
-      "duration": "45 minutes"
-    }
-  ],
-  "tags": ["AI", "Machine Learning", "Beginner"],
-  "instructor": "John Doe"
-}
+[
+  {
+    "id": "1",
+    "title": "សកម្មភាពលេងហ្គេមរបស់ សិក្ខាកាម ក្រុមហ៊ុន CBC",
+    "date": "2023-11-14",
+    "duration": "5 mins",
+    "thumbnailUrl": "https://i.ytimg.com/vi/NORSYYPDScA/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=",
+    "youtubeUrl": "https://www.youtube.com/watch?v=NORSYYPDScA&list=PLqGN-b8FagjBZNmRmXjdEd1f3eNcXnumc&index=1"
+  },
+  {
+    "id": "2",
+    "title": "សកម្មភាពធ្វើ Workshop របស់សិក្ខាកាម ក្រុមហ៊ុន CBC",
+    "date": "2023-11-14",
+    "duration": "7 mins",
+    "thumbnailUrl": "https://i.ytimg.com/vi/F2zhI1xtRGk/maxresdefault.jpg",
+    "youtubeUrl": "https://www.youtube.com/watch?v=F2zhI1xtRGk&list=PLqGN-b8FagjBZNmRmXjdEd1f3eNcXnumc&index=2"
+  },
+  {
+    "id": "3",
+    "title": "សកម្មភាពការធ្វើបទបង្ហាញជាក្រុមរបស់សិក្ខាកាមក្រុមហ៊ុន CBC",
+    "date": "2023-11-14",
+    "duration": "4 mins",
+    "thumbnailUrl": "https://i.ytimg.com/vi/v-U2_QUip8I/maxresdefault.jpg",
+    "youtubeUrl": "https://www.youtube.com/watch?v=v-U2_QUip8I&list=PLqGN-b8FagjBZNmRmXjdEd1f3eNcXnumc&index=3"
+  },
+  {
+    "id": "4",
+    "title": "សកម្មភាពការធ្វើបទបង្ហាញរបស់សិក្ខាកាមក្រុមហ៊ុន Geolink Group",
+    "date": "2023-11-14",
+    "duration": "2 mins",
+    "thumbnailUrl": "https://i.ytimg.com/vi/pBJEcd78u80/maxresdefault.jpg",
+    "youtubeUrl": "https://www.youtube.com/watch?v=pBJEcd78u80&list=PLqGN-b8FagjBZNmRmXjdEd1f3eNcXnumc&index=4"
+  }
+]

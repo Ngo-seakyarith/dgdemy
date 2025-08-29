@@ -12,7 +12,8 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'picsum.photos', pathname: '/**' },
       { protocol: 'https', hostname: 'via.placeholder.com', pathname: '/**' },
       { protocol: 'https', hostname: 'imgur.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'i.imgur.com', pathname: '/**' }
+      { protocol: 'https', hostname: 'i.imgur.com', pathname: '/**' },
+      { protocol: 'https', hostname: 'i.ytimg.com', pathname: '/**' }
     ],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",

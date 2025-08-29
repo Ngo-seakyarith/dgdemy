@@ -17,3 +17,12 @@ export interface Document {
   category: 'ai_skill' | 'soft_skill';
   uploaded_at: string;
 }
+
+export interface Workshop {
+  id: string;
+  title: string;
+  date: string;
+  duration: string;
+  thumbnailUrl: string;
+  youtubeUrl: string;
+}
