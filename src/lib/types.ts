@@ -28,3 +28,12 @@ export interface Workshop {
   youtubeUrl: string;
 }
 
+export interface AiPractise {
+  id: string;
+  title: string;
+  date: string;
+  duration: string;
+  thumbnailUrl: string;
+  youtubeUrl: string;
+}
+

@@ -17,3 +17,6 @@ export { default as CourseCard } from './CourseCard';
 
 // Workshop Components
 export { default as WorkshopCard } from './WorkshopCard';
+
+// AI Practise Components
+export { default as AiPractiseCard } from './AiPractiseCard';

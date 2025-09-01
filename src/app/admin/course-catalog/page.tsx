@@ -35,7 +35,7 @@ export default function AdminUploadPage() {
     }
 
     try {
-      const response = await fetch('/api/admin', {
+      const response = await fetch('/api/admin/course-catalog', {
         method: 'POST',
         body: formData,
       });

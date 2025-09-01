@@ -42,7 +42,7 @@ const dashboardItems = [
     icon: '🤖'
   },
   {
-    title: 'Course Documents',
+    title: 'Course Catalog',
     description: 'Training materials and course documents',
     href: '/dashboard/course-catalog',
     icon: '📚'

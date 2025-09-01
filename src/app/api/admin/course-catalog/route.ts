@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import sql from '../../../lib/neon';
+import sql from '../../../../lib/neon';
 import mammoth from 'mammoth';
 
 export async function POST(request: NextRequest) {
