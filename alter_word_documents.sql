@@ -1,0 +1,1 @@
+ALTER TABLE word_documents ADD COLUMN thumbnail_url TEXT;

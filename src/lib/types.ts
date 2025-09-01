@@ -15,6 +15,7 @@ export interface Document {
   filename: string;
   html_content: string;
   category: 'ai_skill' | 'soft_skill';
+  thumbnail_url?: string;
   uploaded_at: string;
 }
 
@@ -26,3 +27,4 @@ export interface Workshop {
   thumbnailUrl: string;
   youtubeUrl: string;
 }
+

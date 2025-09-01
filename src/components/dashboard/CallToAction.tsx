@@ -18,7 +18,7 @@ interface CallToActionProps {
 
 export default function CallToAction({
   title = "Ready to Start Your Learning Journey?",
-  subtitle = "Join thousands of professionals who have transformed their careers with DGDemy",
+  subtitle = "Join thousands of professionals who have transformed their careers with DG Academy",
   primaryButton = { text: "Contact Us Today", href: "/contact" },
   secondaryButton = { text: "Explore AI Courses", href: "/learn-ai" }
 }: CallToActionProps) {

@@ -18,7 +18,7 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({
-  title = "Welcome to DGDemy",
+  title = "Welcome to DG Academy",
   subtitle = "Your comprehensive learning platform for professional development and AI education",
   primaryButton = { text: "Learn More", href: "/about" },
   secondaryButton = { text: "Get Started", href: "/contact" }
@@ -38,7 +38,7 @@ export default function HeroSection({
         <div className="mb-8 animate-bounce">
           <Image
             src="/app-logo.png"
-            alt="DGDemy Logo"
+            alt="DG Academy Logo"
             width={120}
             height={120}
             className="mx-auto rounded-lg shadow-2xl transform hover:scale-105 transition-transform duration-300"
@@ -46,8 +46,8 @@ export default function HeroSection({
         </div>
 
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-          {title.includes("DGDemy") ? (
-            <>Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300">DGDemy</span></>
+          {title.includes("DG Academy") ? (
+            <>Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300">DG Academy</span></>
           ) : (
             title
           )}

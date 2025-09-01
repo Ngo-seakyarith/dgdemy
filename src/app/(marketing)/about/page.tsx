@@ -11,7 +11,7 @@ export default function About() {
           <div className="prose prose-lg mx-auto">
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Our Mission</h2>
             <p className="text-gray-700 mb-6">
-              At DGDemy, we are committed to providing high-quality education and training solutions
+              At DG Academy, we are committed to providing high-quality education and training solutions
               that empower individuals and organizations to achieve their full potential in the digital age.
             </p>
 

@@ -16,7 +16,7 @@ interface AboutSectionProps {
 }
 
 export default function AboutSection({
-  title = "About DGDemy",
+  title = "About DG Academy",
   subtitle = "We provide comprehensive training programs, workshops, and resources to help professionals advance their careers and stay ahead in the rapidly evolving world of technology and business.",
   features = [
     {

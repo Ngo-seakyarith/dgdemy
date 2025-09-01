@@ -10,14 +10,14 @@ export async function GET(request: NextRequest) {
 
     if (category && (category === 'ai_skill' || category === 'soft_skill')) {
       query = sql`
-        SELECT id, filename, html_content, category, uploaded_at
+        SELECT id, filename, html_content, category, thumbnail_url, uploaded_at
         FROM word_documents
         WHERE category = ${category}
         ORDER BY uploaded_at DESC
       `;
     } else {
       query = sql`
-        SELECT id, filename, html_content, category, uploaded_at
+        SELECT id, filename, html_content, category, thumbnail_url, uploaded_at
         FROM word_documents
         ORDER BY uploaded_at DESC
       `;

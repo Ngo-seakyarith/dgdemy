@@ -30,12 +30,12 @@ export default function RootLayout({
                 <Link href="/" className="flex items-center space-x-2 group">
                   <Image
                     src="/app-logo.png"
-                    alt="DGDemy Logo"
+                    alt="DG Academy Logo"
                     width={40}
                     height={40}
                     className="rounded transition-transform duration-300 group-hover:scale-110"
                   />
-                  <span className="text-xl font-bold transition-transform duration-300 group-hover:scale-105">DGDemy</span>
+                  <span className="text-xl font-bold transition-transform duration-300 group-hover:scale-105">DG Academy</span>
                 </Link>
               </div>
               <div className="flex items-center space-x-2">

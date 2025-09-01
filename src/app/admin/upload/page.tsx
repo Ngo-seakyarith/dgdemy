@@ -35,7 +35,7 @@ export default function AdminUploadPage() {
     }
 
     try {
-      const response = await fetch('/api/upload-word', {
+      const response = await fetch('/api/admin', {
         method: 'POST',
         body: formData,
       });
@@ -127,6 +127,21 @@ export default function AdminUploadPage() {
             </select>
             <p className="text-sm text-gray-500 mt-1">
               Choose the category for this course document.
+            </p>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Thumbnail Image URL (Dropbox)
+            </label>
+            <input
+              type="url"
+              name="thumbnail_url"
+              placeholder="https://www.dropbox.com/s/.../image.jpg?dl=1"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <p className="text-sm text-gray-500 mt-1">
+              Optional: Paste the Dropbox share link for the course thumbnail image. Make sure to use the direct download link (?dl=1).
             </p>
           </div>
 

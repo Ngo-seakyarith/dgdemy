@@ -7,6 +7,7 @@ export async function POST(request: NextRequest) {
     const formData = await request.formData();
     const file = formData.get('file') as File;
     const category = formData.get('category') as string;
+    const thumbnailUrl = formData.get('thumbnail_url') as string;
 
     if (!file) {
       return NextResponse.json({ error: 'No file provided' }, { status: 400 });
@@ -49,8 +50,8 @@ export async function POST(request: NextRequest) {
 
     // Save to database
     const result_db = await sql`
-      INSERT INTO word_documents (filename, html_content, category)
-      VALUES (${file.name}, ${extractedContent}, ${category})
+      INSERT INTO word_documents (filename, html_content, category, thumbnail_url)
+      VALUES (${file.name}, ${extractedContent}, ${category}, ${thumbnailUrl || null})
       RETURNING id
     `;
 
