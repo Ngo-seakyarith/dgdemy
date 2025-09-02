@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { PageTransition, HeroSection, AboutSection, TrainersSection, CallToAction } from '../../components';
+import { PageTransition, HeroSection, VisionMissionSection, AboutSection, TrainersSection, CallToAction } from '../../components';
 import trainersData from '../../../DB/trainer and speaker data/editdata.json';
 
 export default function DashboardHome() {
@@ -11,6 +11,8 @@ export default function DashboardHome() {
     <PageTransition>
       <div className="min-h-screen">
         <HeroSection />
+
+        <VisionMissionSection />
 
         <AboutSection />
 
