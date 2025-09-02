@@ -24,7 +24,7 @@ export async function GET() {
     const formattedAiPractises = aiPractises.map((item) => ({
       id: item.id.toString(),
       title: item.title,
-      date: item.date.toISOString().split('T')[0], // Format date as YYYY-MM-DD
+      date: item.date.toLocaleDateString('en-CA'), // Format date as YYYY-MM-DD in local timezone
       duration: item.duration,
       thumbnailUrl: item.thumbnail_url || '',
       youtubeUrl: item.youtube_url,
