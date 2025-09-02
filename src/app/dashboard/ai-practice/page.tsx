@@ -3,7 +3,7 @@ import { AiPractise } from '@/lib/types';
 
 async function getAiPractises(): Promise<AiPractise[]> {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/ai-practice`, {
+    const res = await fetch('/api/ai-practice', {
       cache: 'no-store',
     });
     if (!res.ok) throw new Error('Failed to fetch ai practise');
