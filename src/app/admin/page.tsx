@@ -125,7 +125,7 @@ export default function AdminPage() {
             <h2 className="text-xl font-semibold mb-4 text-black">Course Catalog Management</h2>
             <p className="text-black mb-4">Upload and manage course documents</p>
             <Link
-              href="/admin/course-catalog"
+              href="/admin/professional-training"
               className="inline-block bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700"
             >
               Manage Course Catalog →

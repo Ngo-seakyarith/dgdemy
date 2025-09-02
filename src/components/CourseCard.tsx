@@ -75,7 +75,7 @@ export default function CourseCard({ document }: CourseCardProps) {
           </p>
         </div>
         <Link
-          href={`/dashboard/course-catalog/${document.id}`}
+          href={`/dashboard/professional-training/${document.id}`}
           className="w-full bg-blue-600 text-white px-4 py-2 rounded text-center hover:bg-blue-700 transition-colors block"
         >
           View Document

@@ -22,7 +22,7 @@ export default function AdminUploadPage() {
     }
 
     try {
-      const response = await fetch('/api/admin/course-catalog', {
+      const response = await fetch('/api/admin/professional-training', {
         method: 'POST',
         body: formData,
       });

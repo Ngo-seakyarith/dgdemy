@@ -14,8 +14,8 @@ export default function CourseCatalogPage() {
     try {
       setLoading(true);
       const url = selectedCategory === 'all'
-        ? '/api/course-catalog'
-        : `/api/course-catalog?category=${selectedCategory}`;
+        ? '/api/professional-training'
+        : `/api/professional-training?category=${selectedCategory}`;
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error('Failed to fetch documents');

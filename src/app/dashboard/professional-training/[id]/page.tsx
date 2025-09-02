@@ -27,7 +27,7 @@ export default function DocumentDetailPage() {
   const fetchDocument = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/course-catalog/${params.id}`);
+      const response = await fetch(`/api/professional-training/${params.id}`);
       if (!response.ok) {
         if (response.status === 404) {
           throw new Error('Document not found');
