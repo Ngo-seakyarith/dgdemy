@@ -4,21 +4,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 
 export default function AdminUploadPage() {
-  const [password, setPassword] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState('');
-
-  const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
-
-  const handleAuth = () => {
-    if (password === ADMIN_PASSWORD) {
-      setIsAuthenticated(true);
-      setMessage('');
-    } else {
-      setMessage('Incorrect password');
-    }
-  };
 
   const handleFileUpload = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -44,6 +31,8 @@ export default function AdminUploadPage() {
 
       if (response.ok) {
         setMessage(`File uploaded successfully! Document ID: ${result.id}`);
+        // Clear the form after successful upload
+        (event.target as HTMLFormElement).reset();
       } else {
         setMessage(`Upload failed: ${result.error}`);
       }
@@ -54,50 +43,14 @@ export default function AdminUploadPage() {
     }
   };
 
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
-          <h1 className="text-2xl font-bold text-center mb-6">Admin Access</h1>
-
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Admin Password
-              </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter admin password"
-              />
-            </div>
-
-            {message && (
-              <div className="text-red-600 text-sm">{message}</div>
-            )}
-
-            <button
-              onClick={handleAuth}
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              Access Upload
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-center mb-8">Upload Word Document</h1>
+        <h1 className="text-3xl font-bold text-center mb-8 text-black">Upload Word Document</h1>
 
         <form onSubmit={handleFileUpload} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-black mb-2">
               Select Word Document (.docx)
             </label>
             <input
@@ -105,42 +58,42 @@ export default function AdminUploadPage() {
               name="file"
               accept=".docx"
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
             />
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-black mt-1">
               Only .docx files are supported. The document will be converted to HTML automatically.
             </p>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-black mb-2">
               Course Category
             </label>
             <select
               name="category"
               required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
             >
               <option value="">Select a category</option>
               <option value="ai_skill">AI Skill</option>
               <option value="soft_skill">Soft Skill</option>
             </select>
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-black mt-1">
               Choose the category for this course document.
             </p>
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-black mb-2">
               Thumbnail Image URL (Dropbox)
             </label>
             <input
               type="url"
               name="thumbnail_url"
               placeholder="https://www.dropbox.com/s/.../image.jpg?dl=1"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
             />
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-black mt-1">
               Optional: Paste the Dropbox share link for the course thumbnail image. Make sure to use the direct download link (?dl=1).
             </p>
           </div>
