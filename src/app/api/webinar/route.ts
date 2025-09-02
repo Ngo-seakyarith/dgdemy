@@ -14,8 +14,7 @@ export async function GET() {
       .reverse(); // Show newest (last in file) first
 
     return NextResponse.json({ images: imageUrls });
-  } catch (error) {
-    console.error('Error reading webinar images:', error);
+  } catch {
     return NextResponse.json({ error: 'Failed to load webinar images' }, { status: 500 });
   }
 }
