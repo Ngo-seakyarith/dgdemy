@@ -1,16 +1,25 @@
-// Component Exports by Category
+// Component Exports
 
 // UI Components
-export * from './ui';
+export { default as LoadingSpinner } from './LoadingSpinner';
+export { default as EmptyState } from './EmptyState';
+export { default as PageTransition } from './PageTransition';
 
 // News Components
-export * from './news';
+export { default as NewsCard } from './NewsCard';
+export { default as NewsGrid } from './NewsGrid';
+export { default as NewsModal } from './NewsModal';
+export { default as NewsHeader } from './NewsHeader';
+export { default as CategoryFilter } from './CategoryFilter';
 
 // Dashboard Components
-export * from './dashboard';
+export { default as HeroSection } from './HeroSection';
+export { default as AboutSection } from './AboutSection';
+export { default as TrainersSection } from './TrainersSection';
+export { default as CallToAction } from './CallToAction';
 
 // Shared Components
-export * from './shared';
+export { default as TrainerCard } from './TrainerCard';
 
 // Course Components
 export { default as CourseCard } from './CourseCard';
