@@ -3,13 +3,14 @@ import sql from '../../../../lib/neon';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const resolvedParams = await params;
     const documents = await sql`
       SELECT id, filename, html_content, category, uploaded_at
       FROM word_documents
-      WHERE id = ${params.id}
+      WHERE id = ${resolvedParams.id}
     `;
 
     if (documents.length === 0) {

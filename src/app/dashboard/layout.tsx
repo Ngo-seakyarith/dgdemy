@@ -18,9 +18,9 @@ const dashboardItems = [
   },
   {
     title: 'Professional Training',
-    description: 'Comprehensive training programs for professionals',
-    href: '/dashboard/training',
-    icon: '🎓'
+    description: 'Training materials and course documents',
+    href: '/dashboard/professional-training',
+    icon: '📚'
   },
   {
     title: 'Webinar',
@@ -40,12 +40,6 @@ const dashboardItems = [
     href: '/dashboard/ai-practice',
     icon: '🤖'
   },
-  {
-    title: 'Course Catalog',
-    description: 'Training materials and course documents',
-    href: '/dashboard/course-catalog',
-    icon: '📚'
-  }
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
