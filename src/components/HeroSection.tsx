@@ -19,7 +19,7 @@ interface HeroSectionProps {
 
 export default function HeroSection({
   title = "Welcome to DG Academy",
-  subtitle = "Your comprehensive learning platform for professional development and AI education",
+  subtitle = "Real-world AI. Real Impact",
   primaryButton = { text: "Learn More", href: "/about" },
   secondaryButton = { text: "Get Started", href: "/contact" }
 }: HeroSectionProps) {

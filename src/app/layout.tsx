@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import Head from 'next/head';
 import './globals.css';
 
 export default function RootLayout({
@@ -21,6 +22,16 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <Head>
+        <title>DG Academy - Real-world AI. Real Impact</title>
+        <meta name="description" content="Real-world AI. Real Impact" />
+        <meta property="og:title" content="DG Academy - Real-world AI. Real Impact" />
+        <meta property="og:description" content="Real-world AI. Real Impact" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="DG Academy - Real-world AI. Real Impact" />
+        <meta name="twitter:description" content="Real-world AI. Real Impact" />
+      </Head>
       <body>
         {!pathname.startsWith('/admin') && (
           <nav className="bg-blue-600 text-white shadow-lg fixed top-0 left-0 right-0 z-50 animate-in slide-in-from-top duration-500">
