@@ -48,7 +48,7 @@ export default function AdminUploadPage() {
         setMessage(`Upload failed: ${result.error}`);
       }
     } catch (error) {
-      setMessage('Upload failed. Please try again.');
+      setMessage(`Upload failed: ${error instanceof Error ? error.message : 'Unknown error'}. Please try again.`);
     } finally {
       setUploading(false);
     }

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Document } from '../lib/types';
 import { useState } from 'react';
 
@@ -42,12 +43,13 @@ export default function CourseCard({ document }: CourseCardProps) {
   return (
     <div className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow">
       {imageUrl && !imageError && (
-        <div className="w-full h-48 overflow-hidden rounded-t-lg">
-          <img
+        <div className="w-full h-48 overflow-hidden rounded-t-lg relative">
+          <Image
             src={imageUrl}
             alt={`${document.filename} thumbnail`}
-            className="w-full h-full object-cover"
-            loading="lazy"
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             onError={() => setImageError(true)}
             onLoad={() => console.log('✅ Image loaded successfully:', imageUrl)}
           />
