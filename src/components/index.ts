@@ -17,6 +17,7 @@ export { default as HeroSection } from './HeroSection';
 export { default as VisionMissionSection } from './VisionMissionSection';
 export { default as AboutSection } from './AboutSection';
 export { default as TrainersSection } from './TrainersSection';
+export { default as ClientLogosMarquee } from './ClientLogosMarquee';
 export { default as CallToAction } from './CallToAction';
 
 // Shared Components
