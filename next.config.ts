@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    unoptimized: true,
     remotePatterns: [
       { protocol: 'https', hostname: 'dgdemy.org', pathname: '/wp-content/uploads/**' },
       { protocol: 'http', hostname: 'dgdemy.org', pathname: '/wp-content/uploads/**' },
