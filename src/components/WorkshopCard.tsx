@@ -3,6 +3,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Workshop } from '../lib/types';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 
 interface WorkshopCardProps {
   workshop: Workshop;
@@ -10,7 +13,7 @@ interface WorkshopCardProps {
 
 export default function WorkshopCard({ workshop }: WorkshopCardProps) {
   return (
-    <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow overflow-hidden">
+    <Card className="overflow-hidden hover:shadow-lg transition-shadow">
       <div className="aspect-video relative">
         <Image
           src={workshop.thumbnailUrl}
@@ -18,33 +21,36 @@ export default function WorkshopCard({ workshop }: WorkshopCardProps) {
           fill
           className="object-cover"
         />
-        <div className="absolute top-2 right-2 bg-black bg-opacity-75 text-white px-2 py-1 rounded text-sm z-10">
+        <Badge className="absolute top-2 right-2 z-10">
           {workshop.duration}
-        </div>
+        </Badge>
       </div>
 
-      <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+      <CardContent className="p-4">
+        <h3 className="text-lg font-semibold text-foreground mb-2 line-clamp-2">
           {workshop.title}
         </h3>
 
-        <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
+        <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
           <span>{new Date(workshop.date).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
           })}</span>
         </div>
+      </CardContent>
 
-        <Link
-          href={workshop.youtubeUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full bg-red-600 text-white px-4 py-2 rounded text-center hover:bg-red-700 transition-colors block"
-        >
-          Watch on YouTube
-        </Link>
-      </div>
-    </div>
+      <CardFooter className="p-4 pt-0">
+        <Button asChild className="w-full">
+          <Link
+            href={workshop.youtubeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Watch on YouTube
+          </Link>
+        </Button>
+      </CardFooter>
+    </Card>
   );
 }

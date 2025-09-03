@@ -2,6 +2,13 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Loader2, Upload, FileText } from 'lucide-react';
 
 export default function AdminUploadPage() {
   const [uploading, setUploading] = useState(false);
@@ -44,83 +51,87 @@ export default function AdminUploadPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-center mb-8 text-black">Upload Word Document</h1>
+    <div className="min-h-screen bg-muted/50 py-12">
+      <div className="max-w-2xl mx-auto px-4">
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-center flex items-center justify-center gap-2">
+              <Upload className="h-6 w-6" />
+              Upload Word Document
+            </CardTitle>
+            <CardDescription className="text-center">
+              Upload a Word document to convert it to an interactive course
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleFileUpload} className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="file">Select Word Document (.docx)</Label>
+                <Input
+                  id="file"
+                  name="file"
+                  type="file"
+                  accept=".docx"
+                  required
+                />
+                <p className="text-sm text-muted-foreground flex items-center gap-1">
+                  <FileText className="h-4 w-4" />
+                  Only .docx files are supported. The document will be converted to HTML automatically.
+                </p>
+              </div>
 
-        <form onSubmit={handleFileUpload} className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-black mb-2">
-              Select Word Document (.docx)
-            </label>
-            <input
-              type="file"
-              name="file"
-              accept=".docx"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-            />
-            <p className="text-sm text-black mt-1">
-              Only .docx files are supported. The document will be converted to HTML automatically.
-            </p>
-          </div>
+              <div className="space-y-2">
+                <Label htmlFor="category">Course Category</Label>
+                <Select name="category" required>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="ai_skill">AI Skill</SelectItem>
+                    <SelectItem value="soft_skill">Soft Skill</SelectItem>
+                  </SelectContent>
+                </Select>
+                <p className="text-sm text-muted-foreground">
+                  Choose the category for this course document.
+                </p>
+              </div>
 
-          <div>
-            <label className="block text-sm font-medium text-black mb-2">
-              Course Category
-            </label>
-            <select
-              name="category"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-            >
-              <option value="">Select a category</option>
-              <option value="ai_skill">AI Skill</option>
-              <option value="soft_skill">Soft Skill</option>
-            </select>
-            <p className="text-sm text-black mt-1">
-              Choose the category for this course document.
-            </p>
-          </div>
+              <div className="space-y-2">
+                <Label htmlFor="thumbnail_url">Thumbnail Image URL (Dropbox)</Label>
+                <Input
+                  id="thumbnail_url"
+                  name="thumbnail_url"
+                  type="url"
+                  placeholder="https://www.dropbox.com/s/.../image.jpg?dl=1"
+                />
+                <p className="text-sm text-muted-foreground">
+                  Optional: Paste the Dropbox share link for the course thumbnail image. Make sure to use the direct download link (?dl=1).
+                </p>
+              </div>
 
-          <div>
-            <label className="block text-sm font-medium text-black mb-2">
-              Thumbnail Image URL (Dropbox)
-            </label>
-            <input
-              type="url"
-              name="thumbnail_url"
-              placeholder="https://www.dropbox.com/s/.../image.jpg?dl=1"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-            />
-            <p className="text-sm text-black mt-1">
-              Optional: Paste the Dropbox share link for the course thumbnail image. Make sure to use the direct download link (?dl=1).
-            </p>
-          </div>
+              <Button type="submit" disabled={uploading} className="w-full">
+                {uploading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {uploading ? 'Uploading...' : 'Upload Document'}
+              </Button>
+            </form>
 
-          <button
-            type="submit"
-            disabled={uploading}
-            className="w-full bg-green-600 text-white py-3 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {uploading ? 'Uploading...' : 'Upload Document'}
-          </button>
-        </form>
+            {message && (
+              <Alert className={`mt-6 ${message.includes('successfully') ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'}`}>
+                <AlertDescription>
+                  {message}
+                </AlertDescription>
+              </Alert>
+            )}
 
-        {message && (
-          <div className={`mt-6 p-4 rounded-md ${message.includes('successfully') ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
-            {message}
-          </div>
-        )}
-
-        <div className="mt-8 text-center">
-          <Link
-            href="/dashboard/course-catalog"
-            className="text-blue-600 hover:text-blue-800 underline"
-          >
-            View All Documents →
-          </Link>
-        </div>
+            <div className="mt-8 text-center">
+              <Button variant="link" asChild>
+                <Link href="/dashboard/professional-training">
+                  View All Documents →
+                </Link>
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

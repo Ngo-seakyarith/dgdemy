@@ -2,6 +2,10 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Loader2, ArrowLeft, RefreshCw, AlertCircle } from 'lucide-react';
 
 interface Document {
   id: number;
@@ -51,11 +55,11 @@ export default function DocumentDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 py-8">
+      <div className="min-h-screen bg-muted/50 py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600">Loading document...</p>
+            <Loader2 className="h-12 w-12 animate-spin mx-auto text-primary" />
+            <p className="mt-4 text-muted-foreground">Loading document...</p>
           </div>
         </div>
       </div>
@@ -64,26 +68,24 @@ export default function DocumentDetailPage() {
 
   if (error || !document) {
     return (
-      <div className="min-h-screen bg-gray-50 py-8">
+      <div className="min-h-screen bg-muted/50 py-8">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-              <h2 className="text-red-800 font-semibold">Error</h2>
-              <p className="text-red-600 mt-2">{error || 'Document not found'}</p>
-              <div className="mt-4 space-x-4">
-                <button
-                  onClick={fetchDocument}
-                  className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-                >
-                  Try Again
-                </button>
-                <button
-                  onClick={() => router.back()}
-                  className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
-                >
-                  Back to Catalog
-                </button>
-              </div>
+          <div className="max-w-md mx-auto">
+            <Alert variant="destructive">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription>
+                {error || 'Document not found'}
+              </AlertDescription>
+            </Alert>
+            <div className="mt-4 flex gap-2 justify-center">
+              <Button onClick={fetchDocument} variant="outline">
+                <RefreshCw className="mr-2 h-4 w-4" />
+                Try Again
+              </Button>
+              <Button onClick={() => router.back()}>
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Catalog
+              </Button>
             </div>
           </div>
         </div>
@@ -92,25 +94,20 @@ export default function DocumentDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-muted/50">
       <div className="w-full px-4 sm:px-6 lg:px-8">
 
         {/* Back Button */}
         <div className="mb-6 flex justify-start">
-          <button
-            onClick={() => router.back()}
-            className="text-blue-600 hover:text-blue-800 flex items-center"
-          >
-            <svg className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
+          <Button onClick={() => router.back()} variant="ghost">
+            <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Course Catalog
-          </button>
+          </Button>
         </div>
 
         {/* Document Content */}
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-          <div className="p-6">
+        <Card>
+          <CardContent className="p-6">
             {/* Add CSS for proper formatting */}
             <style dangerouslySetInnerHTML={{
               __html: `
@@ -121,12 +118,12 @@ export default function DocumentDetailPage() {
                   width: 100%;
                   padding: 20px;
                 }
-                
+
                 /* Global counter for all numbered lists */
                 .document-content {
                   counter-reset: chapter-counter;
                 }
-                
+
                 /* Main Course Title - Hero style */
                 .document-content p:first-child strong {
                   font-size: 3em !important;
@@ -144,7 +141,7 @@ export default function DocumentDetailPage() {
                   letter-spacing: 2px;
                   position: relative;
                 }
-                
+
                 .document-content p:first-child strong::after {
                   content: '';
                   position: absolute;
@@ -156,7 +153,7 @@ export default function DocumentDetailPage() {
                   background: #667eea;
                   border-radius: 2px;
                 }
-                
+
                 /* Chapter titles - properly numbered */
                 .document-content ol li strong {
                   counter-increment: chapter-counter;
@@ -169,26 +166,26 @@ export default function DocumentDetailPage() {
                   display: block;
                   position: relative;
                 }
-                
+
                 .document-content ol li strong::before {
                   content: counter(chapter-counter) ". ";
                   color: #667eea;
                   font-weight: 900;
                   font-size: 1.2em;
                 }
-                
+
                 /* Hide the default ol/li structure since we're using custom numbering */
                 .document-content ol {
                   list-style: none;
                   padding-left: 0;
                   margin: 0;
                 }
-                
+
                 .document-content ol li {
                   margin: 0;
                   padding: 0;
                 }
-                
+
                 /* Module headings within paragraphs */
                 .document-content p strong:not(:first-child) {
                   font-size: 1.3em !important;
@@ -201,7 +198,7 @@ export default function DocumentDetailPage() {
                   border-left: 4px solid #667eea;
                   border-radius: 0 8px 8px 0;
                 }
-                
+
                 /* Bullet lists - improved styling */
                 .document-content ul {
                   padding-left: 25px;
@@ -211,24 +208,24 @@ export default function DocumentDetailPage() {
                   border-radius: 8px;
                   border-left: 4px solid #e2e8f0;
                 }
-                
+
                 .document-content ul li {
                   margin-bottom: 10px;
                   line-height: 1.7;
                   position: relative;
                   padding-left: 10px;
                 }
-                
+
                 .document-content ul li::marker {
                   color: #667eea;
                   font-weight: bold;
                   font-size: 1.1em;
                 }
-                
+
                 .document-content ul li:last-child {
                   margin-bottom: 0;
                 }
-                
+
                 /* Regular paragraphs - improved readability */
                 .document-content p:not(:first-child) {
                   margin-bottom: 20px;
@@ -238,11 +235,11 @@ export default function DocumentDetailPage() {
                   padding: 0 10px;
                   font-size: 1.05em;
                 }
-                
+
                 .document-content p:last-child {
                   margin-bottom: 0;
                 }
-                
+
                 /* Regular bold text */
                 .document-content strong:not(ol li strong):not(p:first-child strong),
                 .document-content b {
@@ -255,17 +252,17 @@ export default function DocumentDetailPage() {
                   background-color: #667eea;
                   padding: 0 2px;
                 }
-                
+
                 /* Ensure all text is visible and properly colored */
                 .document-content * {
                   color: inherit;
                 }
-                
+
                 /* Add some breathing room */
                 .document-content > *:first-child {
                   margin-top: 0;
                 }
-                
+
                 .document-content > *:last-child {
                   margin-bottom: 0;
                 }
@@ -275,8 +272,8 @@ export default function DocumentDetailPage() {
               className="document-content prose prose-lg max-w-none"
               dangerouslySetInnerHTML={{ __html: extractWordContent(document.html_content) }}
             />
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
       </div>
     </div>

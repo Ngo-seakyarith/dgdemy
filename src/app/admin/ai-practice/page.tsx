@@ -2,6 +2,12 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Loader2 } from 'lucide-react';
 
 export default function AdminAiPracticeUploadPage() {
   const [uploading, setUploading] = useState(false);
@@ -58,97 +64,93 @@ export default function AdminAiPracticeUploadPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
-        <h1 className="text-3xl font-bold text-center mb-8 text-black">Upload AI Practice</h1>
+    <div className="min-h-screen bg-muted/50 py-12">
+      <div className="max-w-2xl mx-auto px-4">
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-center">Upload AI Practice</CardTitle>
+            <CardDescription className="text-center">
+              Add a new AI practice video to the platform
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="title">Title *</Label>
+                <Input
+                  id="title"
+                  name="title"
+                  type="text"
+                  required
+                  placeholder="Enter AI practice title"
+                />
+              </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-black mb-2">
-              Title *
-            </label>
-            <input
-              type="text"
-              name="title"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-              placeholder="Enter AI practice title"
-            />
-          </div>
+              <div className="space-y-2">
+                <Label htmlFor="date">Date *</Label>
+                <Input
+                  id="date"
+                  name="date"
+                  type="date"
+                  required
+                />
+              </div>
 
-          <div>
-            <label className="block text-sm font-medium text-black mb-2">
-              Date *
-            </label>
-            <input
-              type="date"
-              name="date"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-            />
-          </div>
+              <div className="space-y-2">
+                <Label htmlFor="duration">Duration *</Label>
+                <Input
+                  id="duration"
+                  name="duration"
+                  type="text"
+                  required
+                  placeholder="e.g., 1h 30m"
+                />
+              </div>
 
-          <div>
-            <label className="block text-sm font-medium text-black mb-2">
-              Duration *
-            </label>
-            <input
-              type="text"
-              name="duration"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-              placeholder="e.g., 1h 30m"
-            />
-          </div>
+              <div className="space-y-2">
+                <Label htmlFor="thumbnail_url">Thumbnail Image URL</Label>
+                <Input
+                  id="thumbnail_url"
+                  name="thumbnail_url"
+                  type="url"
+                  placeholder="https://example.com/thumbnail.jpg"
+                />
+              </div>
 
-          <div>
-            <label className="block text-sm font-medium text-black mb-2">
-              Thumbnail Image URL
-            </label>
-            <input
-              type="url"
-              name="thumbnail_url"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-              placeholder="https://example.com/thumbnail.jpg"
-            />
-          </div>
+              <div className="space-y-2">
+                <Label htmlFor="youtube_url">YouTube URL *</Label>
+                <Input
+                  id="youtube_url"
+                  name="youtube_url"
+                  type="url"
+                  required
+                  placeholder="https://www.youtube.com/watch?v=..."
+                />
+              </div>
 
-          <div>
-            <label className="block text-sm font-medium text-black mb-2">
-              YouTube URL *
-            </label>
-            <input
-              type="url"
-              name="youtube_url"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-              placeholder="https://www.youtube.com/watch?v=..."
-            />
-          </div>
+              <Button type="submit" disabled={uploading} className="w-full">
+                {uploading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {uploading ? 'Uploading...' : 'Upload AI Practice'}
+              </Button>
+            </form>
 
-          <button
-            type="submit"
-            disabled={uploading}
-            className="w-full bg-green-600 text-white py-3 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {uploading ? 'Uploading...' : 'Upload AI Practice'}
-          </button>
-        </form>
+            {message && (
+              <Alert className={`mt-6 ${message.includes('successfully') ? 'border-green-200 bg-green-50' : 'border-red-200 bg-red-50'}`}>
+                <AlertDescription>
+                  {message}
+                </AlertDescription>
+              </Alert>
+            )}
 
-        {message && (
-          <div className={`mt-6 p-4 rounded-md ${message.includes('successfully') ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`}>
-            {message}
-          </div>
-        )}
-
-        <div className="mt-8 text-center">
-          <Link
-            href="/dashboard/ai-practice"
-            className="text-blue-600 hover:text-blue-800 underline"
-          >
-            View All AI Practices →
-          </Link>
-        </div>
+            <div className="mt-8 text-center">
+              <Button variant="link" asChild>
+                <Link href="/dashboard/ai-practice">
+                  View All AI Practices →
+                </Link>
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

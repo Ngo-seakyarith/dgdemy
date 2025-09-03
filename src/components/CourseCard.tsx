@@ -4,6 +4,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Document } from '../lib/types';
 import { useState } from 'react';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { FileText } from 'lucide-react';
 
 interface CourseCardProps {
   document: Document;
@@ -41,7 +44,7 @@ export default function CourseCard({ document }: CourseCardProps) {
   const imageUrl = document.thumbnail_url ? processDropboxUrl(document.thumbnail_url) : '';
 
   return (
-    <div className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow">
+    <Card className="hover:shadow-lg transition-shadow">
       {imageUrl && !imageError && (
         <div className="w-full h-48 overflow-hidden rounded-t-lg relative">
           <Image
@@ -56,31 +59,30 @@ export default function CourseCard({ document }: CourseCardProps) {
         </div>
       )}
       {(!imageUrl || imageError) && (
-        <div className="w-full h-48 bg-gray-200 rounded-t-lg flex items-center justify-center">
-          <div className="text-center text-gray-500">
-            <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
+        <div className="w-full h-48 bg-muted rounded-t-lg flex items-center justify-center">
+          <div className="text-center text-muted-foreground">
+            <FileText className="mx-auto h-12 w-12" />
             <p className="mt-2 text-sm">Document Preview</p>
           </div>
         </div>
       )}
-      <div className="p-6">
+      <CardContent className="p-6">
         <div className="mb-4">
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">
+          <h3 className="text-lg font-semibold text-foreground mb-2">
             {document.filename.replace('.docx', '').replace('.doc', '')}
           </h3>
-          <p className="text-sm text-gray-600 line-clamp-3">
+          <p className="text-sm text-muted-foreground line-clamp-3">
             {getContentPreview(document.html_content)}
           </p>
         </div>
-        <Link
-          href={`/dashboard/professional-training/${document.id}`}
-          className="w-full bg-blue-600 text-white px-4 py-2 rounded text-center hover:bg-blue-700 transition-colors block"
-        >
-          View Document
-        </Link>
-      </div>
-    </div>
+      </CardContent>
+      <CardFooter className="p-6 pt-0">
+        <Button asChild className="w-full">
+          <Link href={`/dashboard/professional-training/${document.id}`}>
+            View Document
+          </Link>
+        </Button>
+      </CardFooter>
+    </Card>
   );
 }
