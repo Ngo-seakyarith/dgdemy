@@ -6,7 +6,8 @@ import { Document } from '../../../lib/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Loader2, RefreshCw, AlertCircle } from 'lucide-react';
+import { RefreshCw, AlertCircle } from 'lucide-react';
+import { LoadingSpinner } from '../../../components';
 
 export default function CourseCatalogPage() {
   const [documents, setDocuments] = useState<Document[]>([]);
@@ -38,16 +39,7 @@ export default function CourseCatalogPage() {
   }, [fetchDocuments]);
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-muted/50 py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <Loader2 className="h-12 w-12 animate-spin mx-auto text-primary" />
-            <p className="mt-4 text-muted-foreground">Loading documents...</p>
-          </div>
-        </div>
-      </div>
-    );
+    return <LoadingSpinner message="Loading training documents..." variant="minimal" />;
   }
 
   if (error) {

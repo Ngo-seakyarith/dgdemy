@@ -1,11 +1,25 @@
-import { WorkshopCard } from '@/components';
+'use client';
+
+import { useState, useEffect } from 'react';
+import { WorkshopCard, LoadingSpinner } from '@/components';
 import { Workshop } from '@/lib/types';
 
 // Import workshop data
 import workshopData from '../../../../DB/workshop/2311.json';
 
 export default function WorkshopPage() {
+  const [loading, setLoading] = useState(true);
   const workshops: Workshop[] = workshopData;
+
+  useEffect(() => {
+    // Simulate loading for consistency
+    const timer = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return <LoadingSpinner message="Loading workshops..." variant="minimal" />;
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">

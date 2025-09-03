@@ -8,7 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Loader2, Shield, FileText, LogOut } from 'lucide-react';
+import { Shield, FileText, LogOut } from 'lucide-react';
+import { LoadingSpinner } from '@/components';
 
 export default function AdminPage() {
   const [password, setPassword] = useState('');
@@ -54,14 +55,7 @@ export default function AdminPage() {
   };
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen bg-muted/50 flex items-center justify-center">
-        <div className="text-center">
-          <Loader2 className="h-12 w-12 animate-spin mx-auto text-primary" />
-          <p className="mt-4 text-muted-foreground">Loading...</p>
-        </div>
-      </div>
-    );
+    return <LoadingSpinner message="Loading admin panel..." />;
   }
 
   if (!isAuthenticated) {
