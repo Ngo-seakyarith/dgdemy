@@ -46,7 +46,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const pathname = usePathname();
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-white flex">
       {/* SHARED SIDEBAR */}
       <div className="w-80 bg-white shadow-lg fixed h-full overflow-y-auto mt-16">
         <div className="p-6">
@@ -76,7 +76,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 ml-80 overflow-y-auto pt-16">
+      <div className="flex-1 ml-80 overflow-y-auto pt-16 bg-white">
         {children}
       </div>
     </div>
