@@ -14,11 +14,20 @@ export async function GET() {
       fs.readFile(path.join(dbPath, 'extracted_workshops_image_urls.txt'), 'utf-8')
     ]);
 
+    const cleanAndSecureUrls = (content: string) => {
+      return content
+        .replace(/^\uFEFF/, '') // Remove BOM
+        .replace(/http:\/\//g, 'https://') // Change http to https
+        .split('\n')
+        .map(url => url.trim()) // Trim whitespace and \r
+        .filter(url => url);
+    };
+
     const images = {
-      general: generalContent.split('\n').filter(url => url.trim()),
-      games: gamesContent.split('\n').filter(url => url.trim()),
-      sharing: sharingContent.split('\n').filter(url => url.trim()),
-      workshops: workshopsContent.split('\n').filter(url => url.trim())
+      general: cleanAndSecureUrls(generalContent),
+      games: cleanAndSecureUrls(gamesContent),
+      sharing: cleanAndSecureUrls(sharingContent),
+      workshops: cleanAndSecureUrls(workshopsContent)
     };
 
     return NextResponse.json(images);
