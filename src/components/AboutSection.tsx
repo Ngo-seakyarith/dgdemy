@@ -16,28 +16,9 @@ interface AboutSectionProps {
 }
 
 export default function AboutSection({
-  title = "About DG Academy",
-  subtitle = "We provide comprehensive training programs, workshops, and resources to help professionals advance their careers and stay ahead in the rapidly evolving world of technology and business.",
-  features = [
-    {
-      icon: "🎓",
-      title: "Professional Training",
-      description: "Comprehensive training programs designed for career advancement",
-      color: "blue"
-    },
-    {
-      icon: "🤖",
-      title: "AI Education",
-      description: "Stay ahead with cutting-edge AI and machine learning courses",
-      color: "green"
-    },
-    {
-      icon: "🌐",
-      title: "Global Network",
-      description: "Connect with professionals and experts worldwide",
-      color: "purple"
-    }
-  ]
+  title,
+  subtitle,
+  features
 }: AboutSectionProps) {
   const getColorClasses = (color: string) => {
     const colors = {
@@ -60,7 +41,7 @@ export default function AboutSection({
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
+          {features && features.map((feature, index) => (
             <div
               key={index}
               className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 p-8 text-center"

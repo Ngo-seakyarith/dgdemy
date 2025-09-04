@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { PageTransition, HeroSection, VisionMissionSection, AboutSection, TrainersSection, CallToAction, ClientLogosMarquee } from '../../components';
+import { PageTransition, HeroSection, VisionMissionSection, TrainersSection, CallToAction, ClientLogosMarquee } from '../../components';
 import trainersData from '../../../DB/trainer and speaker data/editdata.json';
 
 export default function DashboardHome() {
@@ -13,8 +13,6 @@ export default function DashboardHome() {
         <HeroSection />
 
         <VisionMissionSection />
-
-        <AboutSection />
 
         <TrainersSection trainers={trainers} />
 

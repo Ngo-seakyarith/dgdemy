@@ -22,6 +22,8 @@ export { default as CallToAction } from './CallToAction';
 
 // Shared Components
 export { default as TrainerCard } from './TrainerCard';
+export { default as BoardMemberCard } from './BoardMemberCard';
+export { default as SidebarNavigation } from './SidebarNavigation';
 
 // Course Components
 export { default as CourseCard } from './CourseCard';
