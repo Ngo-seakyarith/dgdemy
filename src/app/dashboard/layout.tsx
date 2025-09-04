@@ -1,84 +1,84 @@
+
 'use client';
 
+import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { FaImages, FaNewspaper, FaBook, FaVideo, FaTools, FaRobot } from 'react-icons/fa';
 
 const dashboardItems = [
   {
     title: 'Gallery',
-    description: 'Showcase of projects and achievements',
     href: '/dashboard/gallery',
-    icon: '🖼️'
+    icon: <FaImages />
   },
   {
     title: 'AI News',
-    description: 'Latest updates and news in AI',
     href: '/dashboard/ai-news',
-    icon: '📰'
+    icon: <FaNewspaper />
   },
   {
     title: 'Professional Training',
-    description: 'Training materials and course documents',
     href: '/dashboard/professional-training',
-    icon: '📚'
+    icon: <FaBook />
   },
   {
     title: 'Webinar',
-    description: 'Live online sessions and presentations',
     href: '/dashboard/webinar',
-    icon: '🎥'
+    icon: <FaVideo />
   },
   {
     title: 'Workshop',
-    description: 'Interactive hands-on learning sessions',
     href: '/dashboard/workshop',
-    icon: '🔧'
+    icon: <FaTools />
   },
   {
     title: 'AI Practice',
-    description: 'Practice exercises and AI tools',
     href: '/dashboard/ai-practice',
-    icon: '🤖'
+    icon: <FaRobot />
   },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const [hoveredIndex, setHoveredIndex] = React.useState<number | null>(null);
 
   return (
-    <div className="min-h-screen bg-white flex">
-      {/* SHARED SIDEBAR */}
-      <div className="w-80 bg-white shadow-lg fixed h-full overflow-y-auto mt-16">
-        <div className="p-6">
-          <nav className="space-y-2">
+      <div className="min-h-screen bg-white flex">
+          {/* Responsive Expanding Sidebar */}
+          <div
+            className="fixed left-4 sm:left-6 top-1/2 -translate-y-1/2 h-auto bg-white/90 shadow-xl rounded-2xl z-20 flex flex-col items-center py-4 px-1 sm:px-2 gap-2 border border-gray-200 w-16 sm:w-20"
+          >
+          <nav className="flex flex-col gap-2 w-full items-center justify-center">
             {dashboardItems.map((item, index) => (
               <Link
                 key={index}
                 href={item.href}
-                className={`flex items-center space-x-3 p-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200 group ${
-                  pathname === item.href ? 'bg-blue-50 text-blue-600' : ''
-                }`}
+                className={`flex min-w-0 h-12 rounded-xl px-2 transition-all duration-300 overflow-visible ${
+                  pathname === item.href ? 'bg-blue-100 text-blue-600' : 'text-gray-700'
+                } items-center justify-start relative`}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                style={{ width: '4rem' }}
               >
-                <span className="text-2xl">{item.icon}</span>
-                <div>
-                  <div className="font-medium text-gray-900 group-hover:text-blue-600">
-                    {item.title}
-                  </div>
-                  <div className="text-sm text-gray-500 group-hover:text-blue-500">
-                    {item.description}
-                  </div>
-                </div>
+                <span className="text-2xl flex-shrink-0 w-12 h-12 flex items-center justify-center mx-auto">{item.icon}</span>
+                <span
+                  className={`absolute left-14 top-1/2 -translate-y-1/2 bg-white rounded-xl px-3 py-2 shadow transition-all duration-300 whitespace-nowrap text-base font-medium text-gray-900 overflow-visible text-ellipsis ${
+                    hoveredIndex === index ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+                  }`}
+                  style={{ minWidth: hoveredIndex === index ? '8rem' : '0', maxWidth: hoveredIndex === index ? '12rem' : '0', zIndex: 30 }}
+                >
+                  {item.title}
+                </span>
               </Link>
             ))}
           </nav>
         </div>
 
+        {/* Main Content */}
+        <div className="flex-1 ml-20 sm:ml-24 overflow-y-auto pt-16 bg-white">
+          {children}
+        </div>
       </div>
-
-      {/* Main Content */}
-      <div className="flex-1 ml-80 overflow-y-auto pt-16 bg-white">
-        {children}
-      </div>
-    </div>
   );
 }
