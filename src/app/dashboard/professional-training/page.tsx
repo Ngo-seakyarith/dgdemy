@@ -10,7 +10,7 @@ import { RefreshCw, AlertCircle } from 'lucide-react';
 import { LoadingSpinner } from '../../../components';
 
 export default function CourseCatalogPage() {
-  const [documents, setDocuments] = useState<Document[]>([]);
+  const [allDocuments, setAllDocuments] = useState<Document[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'ai_skill' | 'soft_skill'>('all');
@@ -18,21 +18,24 @@ export default function CourseCatalogPage() {
   const fetchDocuments = useCallback(async () => {
     try {
       setLoading(true);
-      const url = selectedCategory === 'all'
-        ? '/api/professional-training'
-        : `/api/professional-training?category=${selectedCategory}`;
-      const response = await fetch(url);
+      // Always fetch all documents - no category parameter
+      const response = await fetch('/api/professional-training');
       if (!response.ok) {
         throw new Error('Failed to fetch documents');
       }
       const data = await response.json();
-      setDocuments(data.documents || []);
+      setAllDocuments(data.documents || []);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setLoading(false);
     }
-  }, [selectedCategory]);
+  }, []);
+
+  // Filter documents based on selected category
+  const documents = selectedCategory === 'all'
+    ? allDocuments
+    : allDocuments.filter(doc => doc.category === selectedCategory);
 
   useEffect(() => {
     fetchDocuments();

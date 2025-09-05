@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import sql from '../../../lib/neon';
 
 // Define document type
@@ -15,11 +15,8 @@ interface Document {
 const cache = new Map<string, { data: Document[]; timestamp: number }>();
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutes
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    const { searchParams } = new URL(request.url);
-    const category = searchParams.get('category');
-    
     // Use single cache key for all documents
     const cacheKey = 'professional-training-all';
     
@@ -43,13 +40,8 @@ export async function GET(request: NextRequest) {
       cache.set(cacheKey, { data: documents, timestamp: Date.now() });
     }
 
-    // Filter documents if category is specified
-    let filteredDocuments = documents;
-    if (category && (category === 'ai_skill' || category === 'soft_skill')) {
-      filteredDocuments = documents.filter((doc) => doc.category === category);
-    }
-
-    return NextResponse.json({ documents: filteredDocuments }, {
+    // Always return all documents - let frontend handle filtering
+    return NextResponse.json({ documents }, {
       headers: {
         'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
         'X-Cache-Status': cached ? 'HIT' : 'MISS'
