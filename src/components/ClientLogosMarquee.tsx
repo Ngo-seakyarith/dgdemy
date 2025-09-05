@@ -91,7 +91,7 @@ export default function ClientLogosMarquee() {
                   width={120}
                   height={64}
                   unoptimized
-                  className="max-w-full max-h-full object-contain hover:grayscale transition-all duration-300"
+                  className="max-w-full max-h-full object-contain transition-all duration-300"
                 />
               </div>
             ))}
