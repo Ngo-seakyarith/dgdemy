@@ -25,7 +25,11 @@ export async function GET(request: NextRequest) {
 
     const documents = await query;
 
-    return NextResponse.json({ documents });
+    return NextResponse.json({ documents }, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600'
+      }
+    });
   } catch (error) {
     console.error('Error fetching documents:', error);
     return NextResponse.json(

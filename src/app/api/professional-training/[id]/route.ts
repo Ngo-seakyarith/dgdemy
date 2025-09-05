@@ -17,7 +17,11 @@ export async function GET(
       return NextResponse.json({ error: 'Document not found' }, { status: 404 });
     }
 
-    return NextResponse.json({ document: documents[0] });
+    return NextResponse.json({ document: documents[0] }, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600'
+      }
+    });
   } catch (error) {
     console.error('Error fetching document:', error);
     return NextResponse.json(
