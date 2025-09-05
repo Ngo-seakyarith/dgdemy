@@ -52,7 +52,7 @@ export default function SidebarNavigation({ items }: SidebarNavigationProps) {
     <div className="fixed left-4 top-23 z-40 transition-all duration-300">
       <Card className="p-2 shadow-lg bg-white/95 backdrop-blur-sm border border-gray-200">
         {/* Navigation Items */}
-        <div className="space-y-1 w-48">
+        <div className="space-y-1 w-39">
           {items.map((item) => (
             <Button
               key={item.id}

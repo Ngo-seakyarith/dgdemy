@@ -61,7 +61,6 @@ export default function RootLayout({
                       height={40}
                       className="rounded transition-transform duration-300 group-hover:scale-110"
                     />
-                    <span className="text-xl font-bold transition-transform duration-300 group-hover:scale-105">DG Academy</span>
                   </Link>
                 </div>
                 <div className="flex items-center space-x-2">
