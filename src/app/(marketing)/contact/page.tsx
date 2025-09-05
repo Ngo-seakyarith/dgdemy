@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Phone, MapPin, GraduationCap } from 'lucide-react';
+import { Phone, MapPin, GraduationCap, Mail } from 'lucide-react';
 
 export default function Contact() {
   return (
@@ -25,6 +25,14 @@ export default function Contact() {
                   <p className="font-medium text-foreground">Phone Numbers</p>
                   <p className="text-muted-foreground">010 801 601</p>
                   <p className="text-muted-foreground">099 200 805</p>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-center space-x-4 p-4 rounded-lg border">
+                <Mail className="h-8 w-8 text-primary" />
+                <div className="text-left">
+                  <p className="font-medium text-foreground">Email</p>
+                  <a href="mailto:contact@dgdemy.org" className="text-primary hover:text-primary/80">contact@dgdemy.org</a>
                 </div>
               </div>
 
