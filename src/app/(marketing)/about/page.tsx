@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import VisionMissionSection from '@/components/VisionMissionSection';
 import BoardMembersSection from '@/components/BoardMembersSection';
 import AboutSection from '@/components/AboutSection';
@@ -144,6 +145,22 @@ export default function AboutPage() {
           </div>
 
           <div className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-8 md:p-12 shadow-lg">
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-8">
+              <div className="flex-shrink-0">
+                <Image
+                  src="https://www.dropbox.com/scl/fi/bp6ijg07nhxhrmlh0yabt/Mr.-Chim-Guanghui.png?rlkey=mv9of8fg66gwrvvb36k5b3gpp&st=t4x7qfn8&dl=1"
+                  alt="Mr. Chim Guanghui - Chairman"
+                  width={160}
+                  height={160}
+                  className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-white shadow-lg"
+                />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">Mr. Chim Guanghui</h3>
+                <p className="text-lg text-gray-600 mb-4">Chairman, DG Academy</p>
+              </div>
+            </div>
+
             <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
               <p className="text-xl font-medium mb-6 text-gray-900">
                 Dear Respected Employers and Learners,
