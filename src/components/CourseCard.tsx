@@ -68,7 +68,7 @@ export default function CourseCard({ document }: CourseCardProps) {
       )}
       <CardContent className="p-6">
         <div className="mb-4">
-          <h3 className="text-lg font-semibold text-foreground mb-2">
+          <h3 className="text-lg font-semibold text-foreground mb-2 min-h-[4rem] leading-tight whitespace-normal break-words">
             {document.filename.replace('.docx', '').replace('.doc', '')}
           </h3>
           <p className="text-sm text-muted-foreground line-clamp-3">
