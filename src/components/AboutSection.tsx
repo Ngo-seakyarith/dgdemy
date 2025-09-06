@@ -22,9 +22,9 @@ export default function AboutSection({
 }: AboutSectionProps) {
   const getColorClasses = (color: string) => {
     const colors = {
-      blue: "bg-blue-100 text-blue-600",
-      green: "bg-green-100 text-green-600",
-      purple: "bg-purple-100 text-purple-600"
+      blue: "text-blue-600",
+      green: "text-green-600",
+      purple: "text-purple-600"
     };
     return colors[color as keyof typeof colors] || colors.blue;
   };

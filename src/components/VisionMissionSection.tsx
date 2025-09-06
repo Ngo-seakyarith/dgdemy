@@ -32,7 +32,7 @@ export default function VisionMissionSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+            <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4">
               <span className="text-2xl">🎯</span>
             </div>
             <h4 className="text-xl font-semibold text-gray-900 mb-3">Skills that matter</h4>
@@ -40,7 +40,7 @@ export default function VisionMissionSection() {
           </div>
 
           <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+            <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4">
               <span className="text-2xl">🌉</span>
             </div>
             <h4 className="text-xl font-semibold text-gray-900 mb-3">Bridge to industry</h4>
@@ -48,7 +48,7 @@ export default function VisionMissionSection() {
           </div>
 
           <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+            <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4">
               <span className="text-2xl">🚀</span>
             </div>
             <h4 className="text-xl font-semibold text-gray-900 mb-3">Drive adoption</h4>
@@ -56,7 +56,7 @@ export default function VisionMissionSection() {
           </div>
 
           <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-            <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
+            <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4">
               <span className="text-2xl">🌍</span>
             </div>
             <h4 className="text-xl font-semibold text-gray-900 mb-3">Access for everyone</h4>
