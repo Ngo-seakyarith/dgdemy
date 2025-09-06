@@ -22,7 +22,7 @@ export default function BoardMemberCard({ member }: BoardMemberCardProps) {
   return (
     <Card className="hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 p-6 text-center bg-white">
       {/* Image */}
-      <div className="relative w-24 h-24 mx-auto mb-4 bg-gray-100 rounded-full overflow-hidden">
+      <div className="relative w-30 h-30 mx-auto mb-4 bg-gray-100 rounded-full overflow-hidden">
         {member.image && !imageError ? (
           <Image
             src={member.image}

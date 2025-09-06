@@ -24,7 +24,7 @@ export default function TrainerCard({ trainer }: TrainerCardProps) {
   return (
     <Card className="hover:shadow-lg transition-shadow duration-300 overflow-hidden flex flex-col items-center p-4">
       {/* Square Image Section */}
-      <div className="relative w-32 h-32 bg-muted rounded-lg mb-4">
+      <div className="relative w-60 h-60 bg-muted rounded-lg mb-4">
         {trainer.image && !imageError ? (
           <Image
             src={trainer.image}
